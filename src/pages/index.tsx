@@ -1,8 +1,24 @@
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import CircleTexture from "~/components/CircleTexture";
 
 export default function Home() {
+  const [password, setPassword] = useState("");
+  const [hasNumber, setHasNumber] = useState(false);
+  const [hasBothCases, setHasBothCases] = useState(false);
+
+  const containsNumber = (password: string) => {
+    return /\d/.test(password);
+  };
+
+  const containsUppercaseAndLowercase = (password: string) => {
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    return hasUppercase && hasLowercase;
+  };
+
   return (
     <>
       <Head>
@@ -16,9 +32,174 @@ export default function Home() {
           <CircleTexture />
         </div>
 
-        <div></div>
+        <div className="z-50 flex rounded-lg shadow-[0px_0px_5px_0px_#a0aec0]">
+          <div className="flex flex-col items-center justify-center rounded-l-lg bg-[#220059] px-[6rem] text-center text-white">
+            <h1 className="text-[4rem]">Logo</h1>
+            <h2 className="text-[2rem]">BrandName</h2>
+          </div>
 
-        <div className="absolute bottom-[-20rem] left-[-20rem]">
+          <div className="rounded-r-lg bg-white px-[8rem] py-[2rem]">
+            <div className="flex flex-col gap-2">
+              <h1 className="text-3xl font-semibold text-[#220059]">Sign up</h1>
+              <p className="font-light text-gray-500">
+                Already have an account ?{" "}
+                <Link href="#" className="text-[#220059]">
+                  Sign In
+                </Link>
+              </p>
+            </div>
+
+            <div className="mt-2 flex flex-col">
+              <div className="mt-6 flex items-center gap-3 rounded-lg border border-gray-300 px-3 py-2">
+                <Image
+                  src="https://static.thenounproject.com/png/363640-200.png"
+                  alt=""
+                  width={25}
+                  height={25}
+                />
+
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  className="w-full outline-none"
+                />
+              </div>
+
+              <div className="mt-6 flex items-center gap-3 rounded-lg border border-gray-300 px-3 py-2">
+                <Image
+                  src="https://static.vecteezy.com/system/resources/thumbnails/018/886/508/small_2x/email-line-icon-png.png"
+                  alt=""
+                  width={25}
+                  height={25}
+                />
+
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="w-full outline-none"
+                />
+              </div>
+
+              <div>
+                <div className="mt-6 flex items-center gap-3 rounded-lg border border-gray-300 px-3 py-2">
+                  <Image
+                    src="https://cdn1.iconfinder.com/data/icons/ios-11-glyphs/30/password-512.png"
+                    alt=""
+                    width={25}
+                    height={25}
+                  />
+
+                  <input
+                    type="password"
+                    placeholder="New Password"
+                    className="w-full outline-none"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setHasNumber(containsNumber(e.target.value));
+                      setHasBothCases(
+                        containsUppercaseAndLowercase(e.target.value),
+                      );
+                    }}
+                  />
+                </div>
+
+                <div className="mt-2">
+                  <div>
+                    <p
+                      className={`text-sm ${password.length >= 8 ? "text-[#220059]" : "text-gray-400"}`}
+                    >
+                      <span className="text-base">&#9646;</span> At least 8
+                      characters
+                    </p>
+                  </div>
+
+                  <div>
+                    <p
+                      className={`text-sm ${hasBothCases ? "text-[#220059]" : "text-gray-400"}`}
+                    >
+                      <span className="text-base">&#9646;</span> Contains
+                      capital (uppercase) and lowercase letters
+                    </p>
+                  </div>
+
+                  <div>
+                    <p
+                      className={`text-sm ${hasNumber ? "text-[#220059]" : "text-gray-400"}`}
+                    >
+                      <span className="text-base">&#9646;</span> Contains
+                      numbers
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-2 flex items-center gap-3 rounded-lg border border-gray-300 px-3 py-2">
+                <Image
+                  src="https://cdn1.iconfinder.com/data/icons/ios-11-glyphs/30/password-512.png"
+                  alt=""
+                  width={25}
+                  height={25}
+                />
+
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  className="w-full outline-none"
+                />
+              </div>
+
+              <div className="mt-6 flex gap-2">
+                <input type="checkbox" className="h-6 w-6" />
+
+                <p className="text-gray-400">
+                  I agree to{" "}
+                  <Link href="#" className="font-medium text-[#220059]">
+                    terms and conditions
+                  </Link>
+                </p>
+              </div>
+
+              <button
+                className={`mt-6 rounded-lg bg-[#220059] py-2 text-lg font-extralight text-white`}
+              >
+                Sign up
+              </button>
+
+              <p className="my-3 text-center text-sm text-gray-600">OR</p>
+
+              <div className="flex items-center justify-center gap-3">
+                <div className="cursor-pointer rounded-lg border p-1">
+                  <Image
+                    src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
+                    alt=""
+                    width={25}
+                    height={25}
+                  />
+                </div>
+
+                <div className="cursor-pointer rounded-lg border p-1">
+                  <Image
+                    src="https://www.freepnglogos.com/uploads/apple-logo-png/apple-logo-png-dallas-shootings-don-add-are-speech-zones-used-4.png"
+                    alt=""
+                    width={25}
+                    height={25}
+                  />
+                </div>
+
+                <div className="cursor-pointer rounded-lg border p-1">
+                  <Image
+                    src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png"
+                    alt=""
+                    width={25}
+                    height={25}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-[-15rem] left-[-15rem]">
           <CircleTexture />
         </div>
       </main>
