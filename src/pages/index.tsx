@@ -32,13 +32,13 @@ export default function Home() {
           <CircleTexture />
         </div>
 
-        <div className="z-50 flex rounded-lg shadow-[0px_0px_5px_0px_#a0aec0]">
-          <div className="flex flex-col items-center justify-center rounded-l-lg bg-[#220059] px-[6rem] text-center text-white">
+        <div className="z-50 flex rounded-[2rem] shadow-[0px_0px_5px_0px_#a0aec0]">
+          <div className="flex flex-col items-center justify-center rounded-l-[2rem] bg-[#220059] px-[6rem] text-center text-white">
             <h1 className="text-[4rem]">Logo</h1>
             <h2 className="text-[2rem]">BrandName</h2>
           </div>
 
-          <div className="rounded-r-lg bg-white px-[8rem] py-[2rem]">
+          <div className="rounded-r-[2rem] bg-white px-[8rem] py-[2rem]">
             <div className="flex flex-col gap-2">
               <h1 className="text-3xl font-semibold text-[#220059]">Sign up</h1>
               <p className="font-light text-gray-500">
